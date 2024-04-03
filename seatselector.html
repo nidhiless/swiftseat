@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiftseat - Seat Selector</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .bus-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            grid-gap: 10px;
+        }
+        .seat {
+            width: 50px;
+            height: 50px;
+            background-color: grey;
+            border: 1px solid black;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .seat.selected {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seat Selector</h1>
+        </header>
+        <main>
+            <p>Select your seats:</p>
+            <div class="bus-layout">
+                <!-- Seat Grid -->
+                <!-- Each seat should have a unique ID -->
+                <div class="seat" id="seat1">1</div>
+                <div class="seat" id="seat2">2</div>
+                <div class="seat" id="seat3">3</div>
+                <div class="seat" id="seat4">4</div>
+                <div class="seat" id="seat5">5</div>
+                <div class="seat" id="seat6">6</div>
+                <div class="seat" id="seat7">7</div>
+                <div class="seat" id="seat8">8</div>
+                <!-- Add more seats here -->
+            </div>
+            <p>Total Cost: <span id="totalCost">0</span> Rupees</p>
+            <button id="nextButton" class="button">Next</button>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2024 Swiftseat</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const seats = document.querySelectorAll('.seat');
+            const nextButton = document.getElementById('nextButton');
+            const totalCostDisplay = document.getElementById('totalCost');
+            let totalCost = 0;
+
+            // Function to toggle seat selection and update total cost
+            function toggleSeatSelection(seat) {
+                seat.classList.toggle('selected');
+                totalCost += seat.classList.contains('selected') ? 5 : -5;
+                totalCostDisplay.textContent = totalCost;
+            }
+
+            // Event listener for seat selection
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    toggleSeatSelection(seat);
+                });
+            });
+
+            // Event listener for Next button click
+            nextButton.addEventListener('click', () => {
+                const selectedSeats = [];
+                seats.forEach(seat => {
+                    if (seat.classList.contains('selected')) {
+                        selectedSeats.push(seat.id);
+                    }
+                });
+                // Redirect to payment page with total cost
+                window.location.href = 'payment.html?seats=' + selectedSeats.join(',') + '&total=' + totalCost;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiftseat - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bookNowButton = document.getElementById("bookNowButton");
+            if (bookNowButton) {
+                bookNowButton.addEventListener("click", function() {
+                    window.location.href = "busselector.html";
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Swiftseat</h1>
+            <p>Enhanced bus services for the students of Gitam College by the students.</p>
+        </header>
+        <main>
+            <p>Book your bus seats with ease.</p>
+            <button id="bookNowButton" class="button">Book Now</button>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2024 Swiftseat</p>
+    </footer>
+</body>
+</html>
+
